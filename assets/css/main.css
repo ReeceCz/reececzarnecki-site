@@ -3369,4 +3369,16 @@ input, select, textarea {
   				height: 0 !important;
   				overflow: hidden !important;
 			}
+			/* —— Hard-kill the theme's auto title bar/hamburger everywhere —— */
+			#titleBar,
+			#titleBar * { display: none !important; visibility: hidden !important; height: 0 !important; overflow: hidden !important; }
+
+			/* Belt & suspenders: also remove the pseudo-element bars */
+			#titleBar .toggle:before { content: "" !important; display: none !important; }
+
+			/* Prevent any transform shift the theme applies when it thinks the header is open */
+			body.header-visible #wrapper,
+			body.header-visible #titleBar {
+  				transform: none !important;
+			}
 	}
