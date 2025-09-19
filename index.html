@@ -10,19 +10,19 @@
     <noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
     <link rel="icon" type="image/png" href="/images/ReeceCzarnecki.com_ICON.png">
 
-    <!-- Mobile hamburger + sidebar behavior overrides (mobile only) -->
+    <!-- Mobile hamburger + sidebar behavior overrides -->
     <style>
       @media screen and (max-width: 980px) {
-        /* Place the hamburger on the LEFT and keep it above content */
+        /* Place hamburger on the RIGHT */
         #headerToggle {
           position: fixed;
-          left: 0.75rem;
+          right: 0.75rem;
           top: 0.75rem;
           z-index: 10001;
         }
-        /* Off-canvas sidebar by default; slide in when .visible */
+        /* Slide sidebar from the right */
         #header {
-          transform: translateX(-100%);
+          transform: translateX(100%);
           transition: transform .25s ease;
         }
         #header.visible {
@@ -66,7 +66,6 @@
 
     <!-- Wrapper -->
     <div id="wrapper">
-      <!-- Main -->
       <div id="main">
         <!-- About -->
         <section id="one">
