@@ -3313,4 +3313,21 @@ input, select, textarea {
 				padding: 0;
 			}
 
+
+			/* ==== Reece overrides (mobile/tablet) ==== */
+			@media (max-width: 1024px) {
+  			/* Kill the theme’s 44px top padding that creates a gap */
+  			#wrapper { padding: 0 !important; }
+  			#main > section > .container { padding-top: 0 !important; }
+  			#main > section:first-child .image.main { margin-top: 0 !important; }
+			}
+
+			/* Hide the big name inside the slide-out on mobile */
+			@media (max-width: 980px) {
+  			#header > header h1 { display: none !important; }
+			}
 	}
+/* ==== Reece overrides (mobile/tablet) ==== */
+@media (max-width: 1024px){#wrapper{padding:0!important}#main > section > .container{padding-top:0!important}#main > section:first-child .image.main{margin-top:0!important}}
+@media (max-width:980px){#header > header h1{display:none!important}}
+
