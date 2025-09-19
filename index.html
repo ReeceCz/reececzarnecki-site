@@ -18,8 +18,23 @@
           position: fixed;
           right: 0.75rem;
           top: 0.75rem;
-          z-index: 10001;
+          z-index: 10002; /* above header + overlay */
         }
+        #headerToggle a.toggle {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 44px; height: 44px;
+          border-radius: 10px;
+          background: rgba(0,0,0,.55);
+          color: #fff !important;
+          text-decoration: none;
+        }
+        #headerToggle a.toggle .icon {
+          font-size: 1.15rem;
+          line-height: 1;
+        }
+
         /* Slide-out sidebar from the right */
         #header {
           position: fixed;
@@ -33,10 +48,9 @@
           overflow-y: auto;
           -webkit-overflow-scrolling: touch;
         }
-        #header.visible {
-          transform: translateX(0);
-        }
-        /* Page overlay when menu is open (closes on tap) */
+        #header.visible { transform: translateX(0); }
+
+        /* Page overlay */
         #sidebarOverlay {
           position: fixed;
           inset: 0;
@@ -50,16 +64,26 @@
           opacity: 1;
           pointer-events: auto;
         }
-        /* Prevent body scroll when menu is open */
-        body.menu-open {
-          overflow: hidden;
-          touch-action: none;
+        body.menu-open { overflow: hidden; touch-action: none; }
+
+        /* Close button inside the slide-out */
+        #closeSidebar {
+          position: absolute;
+          top: .5rem;
+          right: .5rem;
+          width: 40px; height: 40px;
+          border: 0;
+          border-radius: 8px;
+          background: rgba(255,255,255,.08);
+          color: inherit;
+          font-size: 1.25rem;
+          cursor: pointer;
         }
       }
     </style>
   </head>
   <body class="is-preload">
-    <!-- Mobile nav toggle (hamburger) -->
+    <!-- Mobile nav toggle (hamburger / X) -->
     <div id="headerToggle">
       <a href="#header" class="toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="header">
         <span class="icon solid fa-bars" aria-hidden="true"></span>
@@ -70,6 +94,9 @@
 
     <!-- Header / slide-out sidebar -->
     <section id="header">
+      <!-- in-panel close button (mobile) -->
+      <button id="closeSidebar" aria-label="Close menu" title="Close">&times;</button>
+
       <header>
         <span class="image avatar"><img src="images/avatar.jpg" alt="Reece R. Czarnecki" loading="lazy" decoding="async" /></span>
         <h1 id="logo"><a href="/">Reece&nbsp;R.&nbsp;Czarnecki</a></h1>
@@ -206,28 +233,37 @@
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
 
-    <!-- Toggle logic: open/close with button, overlay, link click, or Esc -->
+    <!-- Toggle logic: open/close with button, overlay, link click, close button, or Esc -->
     <script>
       (function () {
         var toggle  = document.querySelector('#headerToggle a.toggle');
         var header  = document.querySelector('#header');
         var overlay = document.getElementById('sidebarOverlay');
-        if (!toggle || !header || !overlay) return;
+        var closeBtn = document.getElementById('closeSidebar');
+        var icon = toggle && toggle.querySelector('.icon');
+
+        if (!toggle || !header || !overlay || !closeBtn || !icon) return;
 
         function isOpen() { return header.classList.contains('visible'); }
+        function iconToBars(){ icon.classList.remove('fa-times'); icon.classList.add('fa-bars'); }
+        function iconToTimes(){ icon.classList.remove('fa-bars'); icon.classList.add('fa-times'); }
+
         function openMenu() {
           header.classList.add('visible');
           overlay.hidden = false;
           overlay.classList.add('show');
           document.body.classList.add('menu-open');
           toggle.setAttribute('aria-expanded', 'true');
+          toggle.setAttribute('aria-label', 'Close menu');
+          iconToTimes();
         }
         function closeMenu() {
           header.classList.remove('visible');
           overlay.classList.remove('show');
           document.body.classList.remove('menu-open');
           toggle.setAttribute('aria-expanded', 'false');
-          // hide overlay after fade to keep it out of tab order
+          toggle.setAttribute('aria-label', 'Open menu');
+          iconToBars();
           setTimeout(function(){ overlay.hidden = true; }, 200);
         }
         function toggleMenu(e) {
@@ -237,6 +273,8 @@
 
         toggle.addEventListener('click', toggleMenu);
         overlay.addEventListener('click', closeMenu);
+        closeBtn.addEventListener('click', closeMenu);
+
         // Close when any link in the sidebar is clicked
         header.querySelectorAll('a').forEach(function (a) {
           a.addEventListener('click', closeMenu);
