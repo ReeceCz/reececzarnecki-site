@@ -13,20 +13,47 @@
     <!-- Mobile hamburger + sidebar behavior overrides -->
     <style>
       @media screen and (max-width: 980px) {
-        /* Place hamburger on the RIGHT */
+        /* Hamburger on the RIGHT */
         #headerToggle {
           position: fixed;
           right: 0.75rem;
           top: 0.75rem;
           z-index: 10001;
         }
-        /* Slide sidebar from the right */
+        /* Slide-out sidebar from the right */
         #header {
+          position: fixed;
+          right: 0;
+          top: 0;
+          height: 100dvh;
+          width: 260px;
           transform: translateX(100%);
           transition: transform .25s ease;
+          z-index: 10000;
+          overflow-y: auto;
+          -webkit-overflow-scrolling: touch;
         }
         #header.visible {
           transform: translateX(0);
+        }
+        /* Page overlay when menu is open (closes on tap) */
+        #sidebarOverlay {
+          position: fixed;
+          inset: 0;
+          background: rgba(0,0,0,.45);
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity .2s ease;
+          z-index: 9999;
+        }
+        #sidebarOverlay.show {
+          opacity: 1;
+          pointer-events: auto;
+        }
+        /* Prevent body scroll when menu is open */
+        body.menu-open {
+          overflow: hidden;
+          touch-action: none;
         }
       }
     </style>
@@ -34,8 +61,12 @@
   <body class="is-preload">
     <!-- Mobile nav toggle (hamburger) -->
     <div id="headerToggle">
-      <a href="#header" class="toggle" aria-label="Open menu"><span class="icon solid fa-bars"></span></a>
+      <a href="#header" class="toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="header">
+        <span class="icon solid fa-bars" aria-hidden="true"></span>
+      </a>
     </div>
+    <!-- Dim background overlay (mobile) -->
+    <div id="sidebarOverlay" hidden></div>
 
     <!-- Header / slide-out sidebar -->
     <section id="header">
@@ -175,19 +206,45 @@
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
 
-    <!-- Safety shim: ensure hamburger toggles the sidebar -->
+    <!-- Toggle logic: open/close with button, overlay, link click, or Esc -->
     <script>
       (function () {
-        var toggle = document.querySelector('#headerToggle a.toggle');
-        var header = document.querySelector('#header');
-        if (!toggle || !header) return;
-        if (!toggle.dataset.bound) {
-          toggle.dataset.bound = '1';
-          toggle.addEventListener('click', function (e) {
-            e.preventDefault();
-            header.classList.toggle('visible');
-          });
+        var toggle  = document.querySelector('#headerToggle a.toggle');
+        var header  = document.querySelector('#header');
+        var overlay = document.getElementById('sidebarOverlay');
+        if (!toggle || !header || !overlay) return;
+
+        function isOpen() { return header.classList.contains('visible'); }
+        function openMenu() {
+          header.classList.add('visible');
+          overlay.hidden = false;
+          overlay.classList.add('show');
+          document.body.classList.add('menu-open');
+          toggle.setAttribute('aria-expanded', 'true');
         }
+        function closeMenu() {
+          header.classList.remove('visible');
+          overlay.classList.remove('show');
+          document.body.classList.remove('menu-open');
+          toggle.setAttribute('aria-expanded', 'false');
+          // hide overlay after fade to keep it out of tab order
+          setTimeout(function(){ overlay.hidden = true; }, 200);
+        }
+        function toggleMenu(e) {
+          if (e) e.preventDefault();
+          isOpen() ? closeMenu() : openMenu();
+        }
+
+        toggle.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', closeMenu);
+        // Close when any link in the sidebar is clicked
+        header.querySelectorAll('a').forEach(function (a) {
+          a.addEventListener('click', closeMenu);
+        });
+        // Close on Esc
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && isOpen()) closeMenu();
+        });
       })();
     </script>
   </body>
