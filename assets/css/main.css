@@ -3362,4 +3362,11 @@ input, select, textarea {
 			@media (max-width: 1024px) {
   				#headerToggle { display: block !important; }
 			}
+			/* Completely disable the theme's auto-generated title bar */
+			#titleBar {
+ 				display: none !important;
+  				visibility: hidden !important;
+  				height: 0 !important;
+  				overflow: hidden !important;
+			}
 	}
