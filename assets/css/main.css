@@ -3350,4 +3350,8 @@ input, select, textarea {
     			line-height: 1.5em;
   				}
 			}
+			/* Desktop: hide the mobile hamburger */
+			@media (min-width: 981px) {
+  				#headerToggle { display: none !important; }
+			}
 	}
