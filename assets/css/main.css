@@ -3350,8 +3350,16 @@ input, select, textarea {
     			line-height: 1.5em;
   				}
 			}
-			/* Desktop: hide the mobile hamburger */
+			/* Hide mobile toggles on desktop */
 			@media (min-width: 981px) {
-  				#headerToggle { display: none !important; }
+  				#headerToggle,
+  				#titleBar,
+  				#titleBar .toggle { display: none !important; }
+			}
+
+			/* Safe default: hide headerToggle everywhere, then re-enable on mobile */
+			#headerToggle { display: none !important; }
+			@media (max-width: 1024px) {
+  				#headerToggle { display: block !important; }
 			}
 	}
