@@ -1,0 +1,405 @@
+﻿<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Projects | Reece R. Czarnecki</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/assets/css/main.css" />
+    <link rel="icon" type="image/png" href="/images/ReeceCzarnecki.com_ICON.png">
+    <meta name="description" content="Projects by Reece R. Czarnecki â€” trading systems, ML research, finance tooling, and products." />
+    <style>
+      /* Helpers that sit lightly on top of main.css */
+      .page-hero { padding: 2.75rem 0 1rem; text-align:center; }
+      .page-hero h1 { margin-bottom:.4rem; }
+      .page-hero p.sub { opacity:.85; max-width:56rem; margin:.25rem auto 0; }
+
+      .grid { display:grid; grid-template-columns: repeat(12, 1fr); gap:1.25rem; }
+      .project { grid-column: span 12; background: rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.08); border-radius:12px; overflow:hidden; }
+      @media(min-width:980px){ .project--half{ grid-column: span 6; } }
+
+      .project__media { aspect-ratio:16/9; background:#111; display:flex; align-items:center; justify-content:center; }
+      .project__media img, .project__media iframe, .project__media video { width:100%; height:100%; object-fit:cover; }
+      .project__body { padding:1.25rem 1.25rem 1rem; }
+
+      .meta { display:flex; flex-wrap:wrap; gap:.6rem 1rem; opacity:.9; font-size:.92rem; margin:.35rem 0 .75rem; }
+      .badges { display:flex; flex-wrap:wrap; gap:.5rem; margin:.25rem 0 .75rem; }
+      .badge { font-size:.75rem; padding:.25rem .5rem; border:1px solid rgba(255,255,255,.2); border-radius:6px; opacity:.95; }
+
+      .tabs { display:flex; gap:.25rem; border-bottom:1px solid rgba(255,255,255,.08); margin-top:.75rem; }
+      .tab { padding:.5rem .75rem; border:1px solid transparent; border-radius:8px 8px 0 0; cursor:pointer; font-size:.95rem; }
+      .tab.active { border-color: rgba(255,255,255,.12); border-bottom-color: transparent; background:rgba(255,255,255,.04); }
+      .tabpanes { padding:.9rem 0 .25rem; }
+      .tabpane { display:none; }
+      .tabpane.active { display:block; }
+
+      .twocol { display:grid; grid-template-columns:1fr; gap:1rem; }
+      @media(min-width:980px){ .twocol { grid-template-columns: 2fr 1fr; } }
+      .panel { background:rgba(255,255,255,.02); border:1px solid rgba(255,255,255,.06); border-radius:10px; padding:1rem; }
+      .panel h5 { margin:0 0 .5rem; }
+
+      .gallery { display:grid; grid-template-columns:repeat(3, 1fr); gap:.5rem; }
+      .gallery img { width:100%; height:100%; object-fit:cover; border-radius:6px; }
+
+      .actions { display:flex; flex-wrap:wrap; gap:.5rem; margin-top:.5rem; }
+      .actions .button { margin:0; }
+
+      .toolbar { display:flex; flex-wrap:wrap; gap:.5rem; justify-content:center; margin: .75rem auto 1.5rem; }
+      .tag { border:1px solid rgba(255,255,255,.15); padding:.35rem .7rem; border-radius:999px; cursor:pointer; font-size:.9rem; }
+      .tag.active { background: rgba(255,255,255,.08); }
+    </style>
+  </head>
+  <body class="is-preload">
+    <!-- Header -->
+    <section id="header">
+      <header>
+        <span class="image avatar"><img src="/images/avatar.jpg" alt="Reece R. Czarnecki" loading="lazy" decoding="async" /></span>
+        <h1 id="logo"><a href="/Home/">Reece&nbsp;R.&nbsp;Czarnecki</a></h1>
+        <p>Student - University of Jamestown<br />Founder&nbsp;| Quant Trader&nbsp;| Software Engineer</p>
+      </header>
+      <nav id="nav">
+        <ul>
+            <li><a href="/Home/#one">About</a></li>
+            <li><a href="/Projects/" class="active">Projects</a></li>    <!-- or Research page marks Research active -->
+            <li><a href="/Research/">Research</a></li>
+            <li><a href="/Home/#resume">Resume</a></li>
+            <li><a href="/Home/#contact">Contact</a></li>
+        </ul>
+        </nav>
+    </section>
+
+    <div id="wrapper">
+      <div id="main">
+        <section>
+          <div class="container">
+            <div class="page-hero">
+              <h1>Projects</h1>
+              <p class="sub">Detailed demos, tech notes, and tools.</p>
+            </div>
+
+            <!-- Optional filter toolbar -->
+            <div class="toolbar" id="filters">
+              <span class="tag active" data-filter="all">All</span>
+              <span class="tag" data-filter="trading">Trading</span>
+              <span class="tag" data-filter="ml">AI/ML</span>
+              <span class="tag" data-filter="tools">Tools</span>
+              <span class="tag" data-filter="business">Business</span>
+            </div>
+
+            <div class="grid" id="projects-grid">
+              <!-- Project: MarketLabs -->
+              <article class="project" data-tags="trading tools">
+                <div class="project__media">
+                  <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+                          title="MarketLabs Demo"
+                          frameborder="0"
+                          allowfullscreen
+                          loading="lazy"
+                          referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <div class="project__body">
+                  <h3>MarketLabs â€” Terminal, Analytics & Test Bench</h3>
+                  <div class="meta">
+                    <span>Role: Lead Engineer</span>
+                    <span>Stack: Java â€¢ C++ â€¢ PostgreSQL</span>
+                    <span>Status: In active development</span>
+                  </div>
+                  <div class="badges">
+                    <span class="badge">Backtesting</span>
+                    <span class="badge">Live Feeds</span>
+                    <span class="badge">Risk Engine</span>
+                    <span class="badge">Plugins</span>
+                  </div>
+
+                  <div class="tabs" role="tablist" aria-label="MarketLabs tabs" data-tabs="mlabs">
+                    <button class="tab active" role="tab" aria-selected="true" aria-controls="mlabs-overview" id="mlabs-tab-overview" data-tab="overview">Overview</button>
+                    <button class="tab" role="tab" aria-selected="false" aria-controls="mlabs-highlights" id="mlabs-tab-highlights" data-tab="highlights">Highlights</button>
+                    <button class="tab" role="tab" aria-selected="false" aria-controls="mlabs-tech" id="mlabs-tab-tech" data-tab="tech">Tech Notes</button>
+                    <button class="tab" role="tab" aria-selected="false" aria-controls="mlabs-media" id="mlabs-tab-media" data-tab="media">Gallery</button>
+                  </div>
+                  <div class="tabpanes">
+                    <div class="tabpane active" role="tabpanel" id="mlabs-overview" aria-labelledby="mlabs-tab-overview" data-pane="overview">
+                      <p>Unified terminal for real-time quotes, portfolio insights, and a sandbox for rapid idea â†’ test â†’ deploy. Bridges research and execution with low-latency hooks and risk routines.</p>
+                      <div class="actions">
+                        <a href="#" class="button primary icon solid fa-play" target="_blank" rel="noopener">Live Demo</a>
+                        <a href="#" class="button icon brands fa-github" target="_blank" rel="noopener">Source</a>
+                        <a href="#" class="button icon solid fa-file-alt" target="_blank" rel="noopener">Docs</a>
+                      </div>
+                    </div>
+                    <div class="tabpane" role="tabpanel" id="mlabs-highlights" aria-labelledby="mlabs-tab-highlights" data-pane="highlights">
+                      <div class="twocol">
+                        <div class="panel">
+                          <h5>What it does</h5>
+                          <ul>
+                            <li>Strategy bench with walk-forward testing & parameter sweeps.</li>
+                            <li>Portfolio diagnostics (VaR, drawdown, factor tilt).</li>
+                            <li>Execution adapters for paper/live trading.</li>
+                          </ul>
+                        </div>
+                        <div class="panel">
+                          <h5>Why it matters</h5>
+                          <ul>
+                            <li>Shortens the loop from research to live deployment.</li>
+                            <li>Reduces model risk via built-in sanity checks.</li>
+                            <li>Composable: drop in new data sources/models with plugins.</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tabpane" role="tabpanel" id="mlabs-tech" aria-labelledby="mlabs-tab-tech" data-pane="tech">
+                      <div class="twocol">
+                        <div class="panel">
+                          <h5>Architecture</h5>
+                          <ul>
+                            <li>Modular services for data, backtests, and risk via in-proc message bus.</li>
+                            <li>Strategy API for C++/Java models with JNI bridge.</li>
+                            <li>PostgreSQL for state; columnar cache for hot paths.</li>
+                          </ul>
+                        </div>
+                        <div class="panel">
+                          <h5>Roadmap</h5>
+                          <ul>
+                            <li>GPU-accelerated sims</li>
+                            <li>Paper/live trade blotter</li>
+                            <li>On-device feature store</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tabpane" role="tabpanel" id="mlabs-media" aria-labelledby="mlabs-tab-media" data-pane="media">
+                      <div class="gallery">
+                        <img src="/images/pic01.jpg" alt="Terminal" loading="lazy" decoding="async" />
+                        <img src="/images/pic02.jpg" alt="Risk" loading="lazy" decoding="async" />
+                        <img src="/images/pic03.jpg" alt="Backtests" loading="lazy" decoding="async" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Project: Advanced Portfolio Analytics -->
+              <article class="project" data-tags="trading ml tools">
+                <div class="project__media">
+                  <video controls poster="/images/pic02.jpg" preload="metadata">
+                    <source src="/assets/media/portfolio-demo.mp4" type="video/mp4">
+                  </video>
+                </div>
+                <div class="project__body">
+                  <h3>Advanced Portfolio Analytics Engine</h3>
+                  <div class="meta">
+                    <span>Stack: Python â€¢ NumPy â€¢ FastAPI</span>
+                    <span>Focus: Risk, return, scenarios</span>
+                    <span>Status: Beta</span>
+                  </div>
+                  <div class="badges">
+                    <span class="badge">VaR</span>
+                    <span class="badge">Stress Tests</span>
+                    <span class="badge">HMM Regimes</span>
+                  </div>
+
+                  <div class="tabs" role="tablist" aria-label="APA tabs" data-tabs="apa">
+                    <button class="tab active" role="tab" aria-selected="true" aria-controls="apa-overview" id="apa-tab-overview" data-tab="overview">Overview</button>
+                    <button class="tab" role="tab" aria-selected="false" aria-controls="apa-highlights" id="apa-tab-highlights" data-tab="highlights">Highlights</button>
+                    <button class="tab" role="tab" aria-selected="false" aria-controls="apa-tech" id="apa-tab-tech" data-tab="tech">Tech Notes</button>
+                  </div>
+                  <div class="tabpanes">
+                    <div class="tabpane active" role="tabpanel" id="apa-overview" aria-labelledby="apa-tab-overview" data-pane="overview">
+                      <p>Predictive analytics for risk/return, factor attribution, stress tests, forward simulations, and scenario tooling for decision support.</p>
+                      <div class="actions">
+                        <a href="#" class="button primary icon solid fa-chart-line" target="_blank" rel="noopener">Interactive Demo</a>
+                        <a href="#" class="button icon brands fa-github" target="_blank" rel="noopener">Repo</a>
+                        <a href="#" class="button icon solid fa-file-alt" target="_blank" rel="noopener">API Docs</a>
+                      </div>
+                    </div>
+                    <div class="tabpane" role="tabpanel" id="apa-highlights" aria-labelledby="apa-tab-highlights" data-pane="highlights">
+                      <div class="twocol">
+                        <div class="panel">
+                          <h5>Feature Map</h5>
+                          <ul>
+                            <li>Monte Carlo & block bootstrap paths</li>
+                            <li>Factor decomposition & tilt guardrails</li>
+                            <li>Regime detection with HMMs</li>
+                          </ul>
+                        </div>
+                        <div class="panel">
+                          <h5>Sample Metrics</h5>
+                          <ul>
+                            <li>Max DD â†“ 14% on backtests</li>
+                            <li>Turnover â†“ 23% with constraints</li>
+                            <li>Sharpe â†‘ 0.21 vs baseline</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="tabpane" role="tabpanel" id="apa-tech" aria-labelledby="apa-tab-tech" data-pane="tech">
+                      <div class="panel">
+                        <h5>Integration</h5>
+                        <p>REST endpoints for ingestion, simulation, and reports. Designed to plug into MarketLabs or notebooks.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Project: EquityLens AI -->
+              <article class="project" data-tags="ml trading">
+                <div class="project__media">
+                  <img src="/images/pic03.jpg" alt="EquityLens AI" loading="lazy" decoding="async" />
+                </div>
+                <div class="project__body">
+                  <h3>EquityLens AI â€” Automated Equity Research</h3>
+                  <div class="meta">
+                    <span>Stack: Python â€¢ PyTorch â€¢ NLP</span>
+                    <span>Status: Prototype â†’ Private</span>
+                  </div>
+                  <div class="badges">
+                    <span class="badge">NLP</span>
+                    <span class="badge">Valuation</span>
+                    <span class="badge">Thesis Gen</span>
+                  </div>
+
+                  <div class="tabs" role="tablist" aria-label="EquityLens tabs" data-tabs="elens">
+                    <button class="tab active" role="tab" aria-selected="true" aria-controls="elens-overview" id="elens-tab-overview" data-tab="overview">Overview</button>
+                    <button class="tab" role="tab" aria-selected="false" aria-controls="elens-modules" id="elens-tab-modules" data-tab="modules">Modules</button>
+                    <button class="tab" role="tab" aria-selected="false" aria-controls="elens-artifacts" id="elens-tab-artifacts" data-tab="artifacts">Artifacts</button>
+                  </div>
+                  <div class="tabpanes">
+                    <div class="tabpane active" role="tabpanel" id="elens-overview" aria-labelledby="elens-tab-overview" data-pane="overview">
+                      <p>Neural + NLP pipeline that ingests SEC filings and market data to surface mispricings, generate valuation models, and produce thesis briefs with risk flags.</p>
+                      <div class="actions">
+                        <a href="#" class="button icon solid fa-file-pdf" target="_blank" rel="noopener">Sample Report</a>
+                        <a href="#" class="button icon brands fa-github" target="_blank" rel="noopener">Model Cards</a>
+                      </div>
+                    </div>
+                    <div class="tabpane" role="tabpanel" id="elens-modules" aria-labelledby="elens-tab-modules" data-pane="modules">
+                      <div class="panel">
+                        <h5>Modules</h5>
+                        <ul>
+                          <li>10-K parser â†’ entity resolution, KPI extraction, footnote linker</li>
+                          <li>Factor regressions & sanity checks for spurious alpha</li>
+                          <li>Report composer (export: PDF / Notion / Markdown)</li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="tabpane" role="tabpanel" id="elens-artifacts" aria-labelledby="elens-tab-artifacts" data-pane="artifacts">
+                      <div class="panel">
+                        <h5>Artifacts</h5>
+                        <ul>
+                          <li>Coverage: S&P 500 + ADRs</li>
+                          <li>Latency: ~4 min per filing</li>
+                          <li>Explainability: SHAP summaries on drivers</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Project: PlanWise AI -->
+              <article class="project" data-tags="tools ml business">
+                <div class="project__media">
+                  <img src="/images/pic01.jpg" alt="PlanWise AI" loading="lazy" decoding="async" />
+                </div>
+                <div class="project__body">
+                  <h3>PlanWise AI â€” Personal Finance Engine</h3>
+                  <div class="meta"><span>Stack: Python â€¢ Streamlit</span><span>Focus: Planning</span></div>
+                  <div class="badges"><span class="badge">Budgeting</span><span class="badge">Tax-Aware</span><span class="badge">Forecasts</span></div>
+
+                  <div class="tabs" role="tablist" aria-label="PlanWise tabs" data-tabs="pwai">
+                    <button class="tab active" role="tab" aria-selected="true" aria-controls="pwai-overview" id="pwai-tab-overview" data-tab="overview">Overview</button>
+                    <button class="tab" role="tab" aria-selected="false" aria-controls="pwai-demo" id="pwai-tab-demo" data-tab="demo">Live Demo</button>
+                  </div>
+                  <div class="tabpanes">
+                    <div class="tabpane active" role="tabpanel" id="pwai-overview" aria-labelledby="pwai-tab-overview" data-pane="overview">
+                      <p>Retirement planning, budgeting, tax-aware projections, and adaptive plans. Built for clarity and speed.</p>
+                      <div class="actions">
+                        <a href="#" class="button" target="_blank" rel="noopener">Open App</a>
+                        <a href="#" class="button icon solid fa-file-alt" target="_blank" rel="noopener">Whitepaper</a>
+                      </div>
+                    </div>
+                    <div class="tabpane" role="tabpanel" id="pwai-demo" aria-labelledby="pwai-tab-demo" data-pane="demo">
+                      <div class="panel"><p>Embed your Streamlit app iframe here once deployed.</p></div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <section id="footer">
+        <div class="container">
+          <ul class="copyright">
+            <li>&copy; 2025 Reece R. Czarnecki.</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+
+    <!-- JS -->
+    <script src="/assets/js/jquery.min.js"></script>
+    <script>
+      // Tag filter
+      (function(){
+        const tags = document.querySelectorAll('.tag');
+        const cards = document.querySelectorAll('.project');
+        tags.forEach(t => t.addEventListener('click', () => {
+          tags.forEach(x => x.classList.remove('active'));
+          t.classList.add('active');
+          const f = t.dataset.filter;
+          cards.forEach(c => {
+            if (f === 'all') { c.style.display = ''; return; }
+            const has = (c.dataset.tags || '').split(' ').includes(f);
+            c.style.display = has ? '' : 'none';
+          });
+        }));
+      })();
+
+      // Tabs with ARIA + keyboard support
+      (function(){
+        document.querySelectorAll('[data-tabs]').forEach(group => {
+          const root  = group.closest('.project__body');
+          const tabs  = Array.from(group.querySelectorAll('[role="tab"], .tab'));
+          const panes = Array.from(root.querySelectorAll('[role="tabpanel"], .tabpane'));
+
+          function activate(tab) {
+            const target = tab.getAttribute('data-tab');
+            tabs.forEach(t => {
+              const selected = t === tab;
+              t.classList.toggle('active', selected);
+              t.setAttribute('aria-selected', selected);
+              t.tabIndex = selected ? 0 : -1;
+            });
+            panes.forEach(p => {
+              const isActive = p.dataset.pane === target;
+              p.classList.toggle('active', isActive);
+              p.hidden = !isActive;
+            });
+            tab.focus();
+          }
+
+          tabs.forEach((tab, idx) => {
+            tab.setAttribute('role', 'tab');
+            if (!tab.hasAttribute('aria-selected')) tab.setAttribute('aria-selected', tab.classList.contains('active'));
+            tab.tabIndex = tab.classList.contains('active') ? 0 : -1;
+
+            tab.addEventListener('click', () => activate(tab));
+            tab.addEventListener('keydown', (e) => {
+              if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+                e.preventDefault();
+                const dir = e.key === 'ArrowRight' ? 1 : -1;
+                const next = tabs[(idx + dir + tabs.length) % tabs.length];
+                activate(next);
+              }
+            });
+          });
+
+          panes.forEach(p => {
+            p.setAttribute('role', 'tabpanel');
+            if (!p.classList.contains('active')) p.hidden = true;
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
