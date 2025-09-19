@@ -3316,69 +3316,90 @@ input, select, textarea {
 
 			/* ==== Reece overrides (mobile/tablet) ==== */
 			@media (max-width: 1024px) {
-  				/* Remove only the banner gap */
-  				#main > section:first-child .image.main {
-    				margin-top: 0 !important;
- 	  			}
+				/* Remove only the banner gap */
+				#main > section:first-child .image.main {
+					margin-top: 0 !important;
+				}
 				/* Restore original section padding */
-  				#main > section > .container {
-    				padding: 2em 0 1.5em 0 !important;
+				#main > section > .container {
+					padding: 2em 0 1.5em 0 !important;
 				}
 
 				/* Prevent the wrapper’s forced padding */
-  				#wrapper {
-    				padding: 0 !important;
-  				}
+				#wrapper {
+					padding: 0 !important;
+				}
 			}
 
 			/* Hide the big name inside the slide-out on mobile */
 			@media (max-width: 980px) {
-  			#header > header h1 { display: none !important; }
-			}
-			/* Force role lines to stack correctly on mobile */
-			#header p.roles {
-  				display: block;
-  				line-height: 1.4em; /* tighter but readable */
-  				white-space: normal !important;
-  				text-align: center; /* keep it centered like the avatar/name */
-  				margin: 0.5em 0 0;  /* reduce top spacing */
+				#header > header h1 { display: none !important; }
+				#header p.roles {
+					display: block;
+					line-height: 1.4em;
+					white-space: normal !important;
+					text-align: center;
+					margin: 0.5em 0 0;
+				}
 			}
 
+			/* Adjust font sizing for very small screens */
 			@media (max-width: 768px) {
-  				#header p.roles {
-    			font-size: 0.95em; /* shrink a touch on small screens */
-    			line-height: 1.5em;
-  				}
+				#header p.roles {
+					font-size: 0.95em;
+					line-height: 1.5em;
+				}
 			}
+
 			/* Hide mobile toggles on desktop */
 			@media (min-width: 981px) {
-  				#headerToggle,
-  				#titleBar,
-  				#titleBar .toggle { display: none !important; }
+				#headerToggle,
+				#titleBar,
+				#titleBar .toggle,
+				#header .drawer-bar {
+					display: none !important;
+				}
 			}
 
 			/* Safe default: hide headerToggle everywhere, then re-enable on mobile */
-			#headerToggle { display: none !important; }
+			#headerToggle { display: none; }
 			@media (max-width: 1024px) {
-  				#headerToggle { display: block !important; }
+				#headerToggle { display: block !important; }
 			}
+
 			/* Completely disable the theme's auto-generated title bar */
-			#titleBar {
- 				display: none !important;
-  				visibility: hidden !important;
-  				height: 0 !important;
-  				overflow: hidden !important;
-			}
-			/* —— Hard-kill the theme's auto title bar/hamburger everywhere —— */
 			#titleBar,
-			#titleBar * { display: none !important; visibility: hidden !important; height: 0 !important; overflow: hidden !important; }
+			#titleBar * {
+				display: none !important;
+				visibility: hidden !important;
+				height: 0 !important;
+				overflow: hidden !important;
+			}
 
-			/* Belt & suspenders: also remove the pseudo-element bars */
-			#titleBar .toggle:before { content: "" !important; display: none !important; }
+			/* Kill pseudo-element bars */
+			#titleBar .toggle:before {
+ 				content: "" !important;
+  				display: none !important;
+			}
 
-			/* Prevent any transform shift the theme applies when it thinks the header is open */
+			/* Prevent any transform shift when header is open */
 			body.header-visible #wrapper,
 			body.header-visible #titleBar {
   				transform: none !important;
 			}
-	}
+
+			/* Hard-kill phantom hamburger on desktop */
+			@media (min-width: 981px) {
+  				#headerToggle,
+				#titleBar,
+				#titleBar *,
+				#header .drawer-bar,
+				#header .drawer-bar *,
+				#drawerHamburger {
+					display: none !important;
+					visibility: hidden !important;
+					opacity: 0 !important;
+					pointer-events: none !important;
+				}
+			}
+		}
