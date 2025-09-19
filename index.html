@@ -9,12 +9,35 @@
     <link rel="stylesheet" href="/assets/css/main.css" />
     <noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
     <link rel="icon" type="image/png" href="/images/ReeceCzarnecki.com_ICON.png">
-</head>
+
+    <!-- Mobile hamburger + sidebar behavior overrides (mobile only) -->
+    <style>
+      @media screen and (max-width: 980px) {
+        /* Place the hamburger on the LEFT and keep it above content */
+        #headerToggle {
+          position: fixed;
+          left: 0.75rem;
+          top: 0.75rem;
+          z-index: 10001;
+        }
+        /* Off-canvas sidebar by default; slide in when .visible */
+        #header {
+          transform: translateX(-100%);
+          transition: transform .25s ease;
+        }
+        #header.visible {
+          transform: translateX(0);
+        }
+      }
+    </style>
+  </head>
   <body class="is-preload">
+    <!-- Mobile nav toggle (hamburger) -->
     <div id="headerToggle">
       <a href="#header" class="toggle" aria-label="Open menu"><span class="icon solid fa-bars"></span></a>
     </div>
-    <!-- Header -->
+
+    <!-- Header / slide-out sidebar -->
     <section id="header">
       <header>
         <span class="image avatar"><img src="images/avatar.jpg" alt="Reece R. Czarnecki" loading="lazy" decoding="async" /></span>
@@ -144,7 +167,7 @@
       </section>
     </div>
 
-    <!-- Scripts (relative so the mobile nav JS initializes) -->
+    <!-- Scripts -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/jquery.scrollex.min.js"></script>
     <script src="assets/js/jquery.scrolly.min.js"></script>
@@ -152,5 +175,21 @@
     <script src="assets/js/breakpoints.min.js"></script>
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
+
+    <!-- Safety shim: ensure hamburger toggles the sidebar -->
+    <script>
+      (function () {
+        var toggle = document.querySelector('#headerToggle a.toggle');
+        var header = document.querySelector('#header');
+        if (!toggle || !header) return;
+        if (!toggle.dataset.bound) {
+          toggle.dataset.bound = '1';
+          toggle.addEventListener('click', function (e) {
+            e.preventDefault();
+            header.classList.toggle('visible');
+          });
+        }
+      })();
+    </script>
   </body>
 </html>
